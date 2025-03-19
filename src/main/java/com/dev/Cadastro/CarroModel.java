@@ -7,10 +7,10 @@ import jakarta.persistence.*;
 public class CarroModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String modelo;
-    int anoFabricacao;
-    String marca;
+    private Long id;
+    private String modelo;
+    private int anoFabricacao;
+    private String marca;
 
     public CarroModel(){
     }
