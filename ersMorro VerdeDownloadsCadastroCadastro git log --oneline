@@ -1,0 +1,24 @@
+[33mcommit 20f970af763115d9333f6acc7bede2d726404ed8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Bebeto <robertohenriqueduarte05@gmail.com>
+Date:   Wed Mar 19 15:01:42 2025 -0300
+
+    Adicionando a entidade no carroModel e resolvendo conflito entre branch
+    aula2 e main com um merge, uso de amend
+
+[33mcommit 758e85b4750f4e9c11685f8aae4846b177b12072[m[33m ([m[1;32mAula2[m[33m)[m
+Author: Bebeto <robertohenriqueduarte05@gmail.com>
+Date:   Wed Mar 19 14:49:34 2025 -0300
+
+    Cria uma entidade no BD apartir do CarroModel[aula3]
+
+[33mcommit a32889c1f3d452068c7d594e8a9e63fa91a783ba[m
+Author: Bebeto <robertohenriqueduarte05@gmail.com>
+Date:   Mon Mar 17 10:51:00 2025 -0300
+
+    criado a Controller-aula2
+
+[33mcommit 5620693e5db903ff1d37168496512be37c5e17bc[m
+Author: Bebeto <robertohenriqueduarte05@gmail.com>
+Date:   Tue Mar 11 14:07:28 2025 -0300
+
+    first commit

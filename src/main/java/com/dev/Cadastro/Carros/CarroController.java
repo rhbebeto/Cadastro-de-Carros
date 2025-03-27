@@ -1,4 +1,4 @@
-package com.dev.Cadastro;
+package com.dev.Cadastro.Carros;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
