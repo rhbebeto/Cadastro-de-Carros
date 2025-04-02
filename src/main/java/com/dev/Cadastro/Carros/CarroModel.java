@@ -20,6 +20,7 @@ public class CarroModel {
     private String modelo;
     private int anoFabricacao;
     private String marca;
+    @Column(unique = true)
     private String placa;
     @ManyToOne
     @JoinColumn(name = "proprietarios_id") //Foreing Key ou chave estrangeira
