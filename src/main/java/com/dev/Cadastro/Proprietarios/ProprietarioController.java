@@ -3,7 +3,7 @@ package com.dev.Cadastro.Proprietarios;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/proprietario")
 public class ProprietarioController {
     @GetMapping("/boasVindas")
     public  String boasVindas() {
