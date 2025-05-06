@@ -1,6 +1,7 @@
 package com.dev.Cadastro.Proprietarios;
 
 import com.dev.Cadastro.Carros.CarroModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class ProprietarioModel {
     private String email;
     private String telefone;
     @OneToMany(mappedBy = "proprietario")
+    @JsonIgnore
     private List<CarroModel> ListaCarros;
 
 

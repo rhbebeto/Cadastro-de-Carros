@@ -2,13 +2,23 @@ package com.dev.Cadastro.Carros;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("carros")
+@RequestMapping("/carros")
 public class CarroController {
+
+    private CarroService carroService;
+
+    public CarroController(CarroService carroService) {
+        this.carroService = carroService;
+    }
+
     @GetMapping("/boasVindas2")
     public  String boasVindas() {
         return "Essa é minha 2° mensagem nessa rota!";
     }
+
 
     @PostMapping("/criar")
     public String criarCarro (){
@@ -23,8 +33,8 @@ public class CarroController {
     }
 
     @GetMapping ("/listar")
-    public String listarCarro(){
-        return "Listar carros!";
+    public List<CarroModel> listarCarro(){
+        return carroService.listarCarros();
 
     }
 

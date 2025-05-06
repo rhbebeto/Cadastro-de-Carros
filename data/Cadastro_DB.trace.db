@@ -20,3 +20,7 @@ Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection wa
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 16 more
+2025-05-05 15:58:09.665309-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO TB_PROPRIETARIO (ID, CPF, EMAIL, NOME, TELEFONE)\000d\000aVALUES ('1', '1111111111', 'AA@TESTE.COM', 'TESTE, '359999999[*]')"; SQL statement:
+INSERT INTO TB_PROPRIETARIO (ID, CPF, EMAIL, NOME, TELEFONE)
+VALUES ('1', '1111111111', 'AA@TESTE.COM', 'TESTE, '359999999') [42000-232]

@@ -2,9 +2,21 @@ package com.dev.Cadastro.Proprietarios;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+
+
 @RestController
 @RequestMapping("/proprietario")
 public class ProprietarioController {
+
+    //injeção de service
+    private ProprietarioService proprietarioService;
+
+    public ProprietarioController(ProprietarioService proprietarioService) {
+        this.proprietarioService = proprietarioService;
+    }
+
     @GetMapping("/boasVindas")
     public  String boasVindas() {
 
@@ -18,11 +30,10 @@ public class ProprietarioController {
     }
 
 
-    //Mostrar
-    @GetMapping("/todos")
-    public String mostrarTodosProprietario(){
-
-        return "mostrados";
+    //listar
+    @GetMapping("/listar")
+    public List<ProprietarioModel> listarProprietario(){
+        return proprietarioService.listaProprietarios();
 
     }
 
@@ -44,4 +55,6 @@ public class ProprietarioController {
     public String deletarId(){
         return "Deletar";
     }
+
+
 }
