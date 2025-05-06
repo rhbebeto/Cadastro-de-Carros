@@ -38,6 +38,11 @@ public class CarroController {
 
     }
 
+    @GetMapping ("/listar/{id}")
+    public CarroModel listarPorId(@PathVariable Long id){
+        return carroService.listarPorId(id);
+    }
+
     @DeleteMapping("/deletar")
     public String deletarCarro(){
         return "Deleta carro";

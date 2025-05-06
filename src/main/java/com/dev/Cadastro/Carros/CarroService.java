@@ -3,6 +3,7 @@ package com.dev.Cadastro.Carros;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarroService {
@@ -13,8 +14,15 @@ public class CarroService {
         this.carroRepository = carroRepository;
     }
 
-    //listar carros
+    //listar todos carros
     public List<CarroModel> listarCarros(){
         return carroRepository.findAll();
+    }
+
+    //listar por id
+    public CarroModel listarPorId(Long id){
+        Optional<CarroModel> carroPorId = carroRepository.findById(id);
+        return carroPorId.orElse(null) ;
+
     }
 }
