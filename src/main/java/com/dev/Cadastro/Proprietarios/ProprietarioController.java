@@ -1,5 +1,6 @@
 package com.dev.Cadastro.Proprietarios;
 
+import com.dev.Cadastro.Carros.CarroModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,19 +26,25 @@ public class ProprietarioController {
 
     //Criar
     @PostMapping("/criar")
-    public String criar() {
-        return "proprietario criado";
+    public ProprietarioModel criar(@RequestBody ProprietarioModel proprietario){
+        return proprietarioService.criarProprietario(proprietario);
     }
 
 
-    //listar
+
+    //Listar todos
     @GetMapping("/listar")
     public List<ProprietarioModel> listarProprietario(){
         return proprietarioService.listaProprietarios();
 
     }
+    //Listar Por id
+    @GetMapping("/listar/{id}")
+    public ProprietarioModel listarPorId(@PathVariable Long id){
+        return proprietarioService.listarPorId(id);
+    }
 
-    //procurar
+    //Procurar
     @GetMapping("/todosID")
     public String mostrarTodosProprietarioID(){
 

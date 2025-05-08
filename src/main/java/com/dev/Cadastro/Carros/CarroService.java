@@ -25,4 +25,9 @@ public class CarroService {
         return carroPorId.orElse(null) ;
 
     }
+    //Criar novo Carro
+    public CarroModel criarCarro(CarroModel carro){
+        return carroRepository.save(carro);
+    }
+
 }

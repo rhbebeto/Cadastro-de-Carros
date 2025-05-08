@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/carros")
+@RequestMapping("/carro")
 public class CarroController {
 
     private CarroService carroService;
@@ -20,11 +20,12 @@ public class CarroController {
     }
 
 
+    //Criar
     @PostMapping("/criar")
-    public String criarCarro (){
-        return "Criar carro!";
-
+    public CarroModel criar(@RequestBody CarroModel carro) {
+        return carroService.criarCarro(carro) ;
     }
+
 
     @PutMapping("/alterar")
     public String alterarCarro(){
