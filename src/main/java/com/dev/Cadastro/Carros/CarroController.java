@@ -51,5 +51,12 @@ public class CarroController {
         return "Deleteado com sucesso!";
     }
 
+    //Alterar
+    @PutMapping("alterar/{id}")
+    public CarroModel atualizarCarro(@PathVariable Long id, @RequestBody CarroModel carroAtualizado){
+     return carroService.atualizarCarro(id,carroAtualizado);
+    }
+
+
 
 }

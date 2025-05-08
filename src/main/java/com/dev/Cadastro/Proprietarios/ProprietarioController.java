@@ -51,9 +51,10 @@ public class ProprietarioController {
         return "mostrados";
 
     }
-    //alter
-    @PutMapping("/alterarID")
-    public String alterarProprietarioID(){
+    //Alterar
+    @PutMapping("/alterarID/{id}")
+    public String alterarProprietarioID(@PathVariable Long id) {
+        
         return "Altereado";
     }
 
@@ -63,6 +64,8 @@ public class ProprietarioController {
         proprietarioService.listarPorId(id);
         return "Deletado com sucesso!";
     }
+
+
 
 
 }
