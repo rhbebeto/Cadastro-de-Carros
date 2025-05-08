@@ -58,9 +58,10 @@ public class ProprietarioController {
     }
 
     //deletar
-    @DeleteMapping("/deletarID")
-    public String deletarId(){
-        return "Deletar";
+    @DeleteMapping("/deletarID/{id}")
+    public String deletarId(@PathVariable Long id){
+        proprietarioService.listarPorId(id);
+        return "Deletado com sucesso!";
     }
 
 

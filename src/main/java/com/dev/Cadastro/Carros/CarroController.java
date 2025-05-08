@@ -44,9 +44,11 @@ public class CarroController {
         return carroService.listarPorId(id);
     }
 
-    @DeleteMapping("/deletar")
-    public String deletarCarro(){
-        return "Deleta carro";
+
+    @DeleteMapping("/deletar/{id}")
+    public String deletarCarro(@PathVariable Long id) {
+        carroService.deletarCarro(id);
+        return "Deleteado com sucesso!";
     }
 
 

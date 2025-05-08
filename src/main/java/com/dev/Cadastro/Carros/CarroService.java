@@ -14,12 +14,12 @@ public class CarroService {
         this.carroRepository = carroRepository;
     }
 
-    //listar todos carros
+    //Listar todos carros
     public List<CarroModel> listarCarros(){
         return carroRepository.findAll();
     }
 
-    //listar por id
+    //Listar por id
     public CarroModel listarPorId(Long id){
         Optional<CarroModel> carroPorId = carroRepository.findById(id);
         return carroPorId.orElse(null) ;
@@ -28,6 +28,11 @@ public class CarroService {
     //Criar novo Carro
     public CarroModel criarCarro(CarroModel carro){
         return carroRepository.save(carro);
+    }
+
+    //Deletar
+    public void deletarCarro (Long id){
+        carroRepository.deleteById(id);
     }
 
 }

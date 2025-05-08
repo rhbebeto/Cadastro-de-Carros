@@ -31,4 +31,9 @@ public class ProprietarioService {
         return proprietarioRepository.save(proprietario);
     }
 
+    //Deletar
+    public void deletarProprietario(Long id){
+        proprietarioRepository.deleteById(id);
+    }
+
 }
