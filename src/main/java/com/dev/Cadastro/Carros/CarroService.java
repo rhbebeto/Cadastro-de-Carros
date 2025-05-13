@@ -9,10 +9,14 @@ import java.util.Optional;
 public class CarroService {
 
     private CarroRepository carroRepository;
+    private CarroMapper carroMapper;
 
-    public CarroService(CarroRepository carroRepository) {
+    public CarroService(CarroRepository carroRepository, CarroMapper carroMapper) {
         this.carroRepository = carroRepository;
+        this.carroMapper = carroMapper;
     }
+
+
 
     //Listar todos carros
     public List<CarroModel> listarCarros(){
@@ -26,8 +30,10 @@ public class CarroService {
 
     }
     //Criar novo Carro
-    public CarroModel criarCarro(CarroModel carro){
-        return carroRepository.save(carro);
+    public CarroDTO criarCarro(CarroDTO carroDto){
+        CarroModel carro = carroMapper.map(carroDto);
+        carro = carroRepository.save(carro);
+        return carroMapper.map(carro);
     }
 
     //Deletar

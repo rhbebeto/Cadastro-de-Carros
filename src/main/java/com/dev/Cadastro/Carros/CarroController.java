@@ -22,7 +22,7 @@ public class CarroController {
 
     //Criar
     @PostMapping("/criar")
-    public CarroModel criar(@RequestBody CarroModel carro) {
+    public CarroDTO criar(@RequestBody CarroDTO carro) {
         return carroService.criarCarro(carro) ;
     }
 
