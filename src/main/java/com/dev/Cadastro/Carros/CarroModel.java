@@ -17,14 +17,24 @@ public class CarroModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String modelo;
+
     private int anoFabricacao;
+
     private String marca;
+
     @Column(unique = true)
     private String placa;
+
     @ManyToOne
     @JoinColumn(name = "proprietarios_id") //Foreing Key ou chave estrangeira
     private ProprietarioModel proprietario;
+
+    @Column(name ="cor" )
+    private String cor;
+
+
 
 
 }
