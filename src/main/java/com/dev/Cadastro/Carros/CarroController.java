@@ -34,13 +34,13 @@ public class CarroController {
     }
 
     @GetMapping ("/listar")
-    public List<CarroModel> listarCarro(){
+    public List<CarroDTO> listarCarro(){
         return carroService.listarCarros();
 
     }
 
     @GetMapping ("/listar/{id}")
-    public CarroModel listarPorId(@PathVariable Long id){
+    public CarroDTO listarPorId(@PathVariable Long id){
         return carroService.listarPorId(id);
     }
 
@@ -53,8 +53,8 @@ public class CarroController {
 
     //Alterar
     @PutMapping("alterar/{id}")
-    public CarroModel atualizarCarro(@PathVariable Long id, @RequestBody CarroModel carroAtualizado){
-     return carroService.atualizarCarro(id,carroAtualizado);
+    public CarroDTO atualizarCarro(@PathVariable Long id, @RequestBody CarroDTO carroDTO){
+     return carroService.atualizarCarro(id,carroDTO);
     }
 
 
