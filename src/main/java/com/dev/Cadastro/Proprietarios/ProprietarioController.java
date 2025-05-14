@@ -26,46 +26,33 @@ public class ProprietarioController {
 
     //Criar
     @PostMapping("/criar")
-    public ProprietarioModel criar(@RequestBody ProprietarioModel proprietario){
-        return proprietarioService.criarProprietario(proprietario);
+    public ProprietarioDTO criar(@RequestBody ProprietarioDTO proprietarioDTO){
+        return proprietarioService.criarProprietario(proprietarioDTO);
     }
-
-
 
     //Listar todos
     @GetMapping("/listar")
-    public List<ProprietarioModel> listarProprietario(){
+    public List<ProprietarioDTO> listarProprietario(){
         return proprietarioService.listaProprietarios();
 
     }
+
     //Listar Por id
     @GetMapping("/listar/{id}")
-    public ProprietarioModel listarPorId(@PathVariable Long id){
+    public ProprietarioDTO listarPorId(@PathVariable Long id){
         return proprietarioService.listarPorId(id);
     }
 
-    //Procurar
-    @GetMapping("/todosID")
-    public String mostrarTodosProprietarioID(){
-
-        return "mostrados";
-
-    }
     //Alterar
-    @PutMapping("/alterarID/{id}")
-    public String alterarProprietarioID(@PathVariable Long id) {
-        
-        return "Altereado";
+    @PutMapping("/alterar/{id}")
+    public ProprietarioDTO alterarProprietarioID(@PathVariable Long id,@RequestBody ProprietarioDTO proprietarioAlterado) {
+        return proprietarioService.alterar(id, proprietarioAlterado);
     }
 
     //deletar
-    @DeleteMapping("/deletarID/{id}")
+    @DeleteMapping("/deletar/{id}")
     public String deletarId(@PathVariable Long id){
-        proprietarioService.listarPorId(id);
+        proprietarioService.deletarProprietario(id);
         return "Deletado com sucesso!";
     }
-
-
-
-
 }
