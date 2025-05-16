@@ -1,6 +1,9 @@
 package com.dev.Cadastro.Proprietarios;
 
+import com.dev.Cadastro.Carros.CarroDTO;
 import com.dev.Cadastro.Carros.CarroModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +29,10 @@ public class ProprietarioController {
 
     //Criar
     @PostMapping("/criar")
-    public ProprietarioDTO criar(@RequestBody ProprietarioDTO proprietarioDTO){
-        return proprietarioService.criarProprietario(proprietarioDTO);
+    public ResponseEntity<String> criar(@RequestBody ProprietarioDTO proprietarioDTO){
+        ProprietarioDTO proprietraioNovo= proprietarioService.criarProprietario(proprietarioDTO);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("O Proprietário " +proprietraioNovo.getNome()+ "de id" + proprietraioNovo.getId() + " foi criado com sucesso!");
     }
 
     //Listar todos
@@ -39,20 +44,38 @@ public class ProprietarioController {
 
     //Listar Por id
     @GetMapping("/listar/{id}")
-    public ProprietarioDTO listarPorId(@PathVariable Long id){
-        return proprietarioService.listarPorId(id);
+    public ResponseEntity<?> listarPorId(@PathVariable Long id){
+        ProprietarioDTO proprietario = proprietarioService.listarPorId(id);
+        if (proprietario != null){
+            return ResponseEntity.ok(proprietario);
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado!");
+        }
     }
 
     //Alterar
     @PutMapping("/alterar/{id}")
-    public ProprietarioDTO alterarProprietarioID(@PathVariable Long id,@RequestBody ProprietarioDTO proprietarioAlterado) {
-        return proprietarioService.alterar(id, proprietarioAlterado);
+    public ResponseEntity<String> alterarProprietarioID(@PathVariable Long id,@RequestBody ProprietarioDTO proprietarioAlterado) {
+        if (proprietarioService.listarPorId(id)!= null) {
+            proprietarioService.alterar(id, proprietarioAlterado);
+            return ResponseEntity.ok().body("Usuario alterado com sucesso");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+        }
     }
 
     //deletar
     @DeleteMapping("/deletar/{id}")
-    public String deletarId(@PathVariable Long id){
-        proprietarioService.deletarProprietario(id);
-        return "Deletado com sucesso!";
+    public ResponseEntity<String> deletarId(@PathVariable Long id){
+        if (proprietarioService.listarPorId(id)!= null) {
+            proprietarioService.deletarProprietario(id);
+            return ResponseEntity.ok().body("Proprietario excluido com sucesso!");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Id não encontrado.");
+        }
     }
 }

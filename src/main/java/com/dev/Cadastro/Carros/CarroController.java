@@ -1,5 +1,7 @@
 package com.dev.Cadastro.Carros;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,15 +24,10 @@ public class CarroController {
 
     //Criar
     @PostMapping("/criar")
-    public CarroDTO criar(@RequestBody CarroDTO carro) {
-        return carroService.criarCarro(carro) ;
-    }
-
-
-    @PutMapping("/alterar")
-    public String alterarCarro(){
-        return "Alterar carro!";
-
+    public ResponseEntity<String> criar(@RequestBody CarroDTO carro) {
+        CarroDTO carroNovo = carroService.criarCarro(carro);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Carro adicionado com sucesso:" + carroNovo.getModelo() + " ID: "+carroNovo.getId());
     }
 
     @GetMapping ("/listar")
@@ -46,15 +43,29 @@ public class CarroController {
 
 
     @DeleteMapping("/deletar/{id}")
-    public String deletarCarro(@PathVariable Long id) {
-        carroService.deletarCarro(id);
-        return "Deleteado com sucesso!";
+    public ResponseEntity<String> deletarCarro(@PathVariable Long id) {
+
+        if (carroService.listarPorId(id) != null){
+            carroService.deletarCarro(id);
+            return ResponseEntity.ok("Carro com id " + id + " deletado com sucesso!");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Carro de id "+ id +"  não existe.");
+        }
     }
 
     //Alterar
     @PutMapping("alterar/{id}")
-    public CarroDTO atualizarCarro(@PathVariable Long id, @RequestBody CarroDTO carroDTO){
-     return carroService.atualizarCarro(id,carroDTO);
+    public ResponseEntity<String> atualizarCarro(@PathVariable Long id, @RequestBody CarroDTO carroDTO){
+        if (carroService.listarPorId(id)!= null){
+            carroService.atualizarCarro(id, carroDTO);
+            return ResponseEntity.ok("Carro com id " + id + " atualizado com sucesso!");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Carro de id "+ id +"  não existe.");        }
+
     }
 
 
