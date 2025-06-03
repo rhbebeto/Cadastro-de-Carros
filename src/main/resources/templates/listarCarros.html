@@ -1,0 +1,139 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabela de ninjas</title>
+    <style>
+        body {
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           background: #f2f2f2;
+           padding: 20px;
+       }
+
+       h1 {
+           text-align: center;
+           color: #333;
+       }
+
+       table {
+           width: 100%;
+           border-collapse: collapse;
+           margin-top: 30px;
+           background-color: #fff;
+           border-radius: 8px;
+           overflow: hidden;
+           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+       }
+
+       th, td {
+           padding: 12px 15px;
+           text-align: left;
+       }
+
+       th {
+           background-color: #4CAF50;
+           color: white;
+       }
+
+       tr:nth-child(even) {
+           background-color: #f9f9f9;
+       }
+
+       tr:hover {
+           background-color: #e6f7ff;
+       }
+
+       .btn {
+           padding: 6px 12px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           font-weight: bold;
+           text-decoration: none;
+           margin-right: 5px;
+       }
+
+       .btn-delete {
+           background-color: #e74c3c;
+           color: white;
+       }
+
+       .btn-delete:hover {
+           background-color: #c0392b;
+       }
+
+       .btn-edit {
+           background-color: #3498db;
+           color: white;
+       }
+
+       .btn-edit:hover {
+           background-color: #2980b9;
+       }
+
+       @media (max-width: 768px) {
+           table, thead, tbody, th, td, tr {
+               display: block;
+           }
+
+           thead tr {
+               display: none;
+           }
+
+           td {
+               padding: 10px;
+               border-bottom: 1px solid #ddd;
+               position: relative;
+           }
+
+           td::before {
+               content: attr(data-label);
+               font-weight: bold;
+               display: block;
+               margin-bottom: 5px;
+               color: #555;
+           }
+       }
+    </style>
+</head>
+<body>
+<h1> Lista de Ninjas</h1>
+<table>
+    <thead>
+     <tr >
+        <th>ID</th>
+        <th>Modelo</th>
+         <th>Ano de Fabricacão</th>
+         <th>Marca</th>
+         <th>Placa</th>
+         <th>Proprietario</th>
+         <th>Cor</th>
+         <th>Acao</th>
+     </tr>
+    </thead>
+    <tbody>
+    <tr th:each=" carro : ${carros}">
+        <td th:text="${carro.id}">ID</td>
+        <td th:text="${carro.modelo}">Modelo</td>
+        <td th:text="${carro.anoFabricacao}">Ano</td>
+        <td th:text="${carro.marca}">Marca</td>
+        <td th:text="${carro.placa}">Placa</td>
+        <td>
+            <span th:if="${carro.proprietario}">Nome: <span th:text = ${carro.proprietario.nome}></span></span>
+            <span th:if ="${carro.proprietario} == null">"Sem dono cadastrado"</span>
+        </td>
+        <td th:text="${carro.cor}">Cor</td>
+
+        <td>
+            <a th:href="@{/carros/ui/deletar/{id}(id=${carro.id})}" class="btn btn-delete">Deletar</a>
+            <a th:href="@{/carros/ui/alterar/{id}(id=${carro.id})}" class="btn btn-delete">Alterar</a>
+        </td>
+
+    </tr>
+
+    </tbody>
+    <a th:href="@{/carros/ui/adicionar}" class="btn btn-delete">Criar</a>
+</table>
+</body>
+</html>
